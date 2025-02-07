@@ -50,7 +50,7 @@ export default function ReferralTaskDrawer({
       />
       <h2 className="text-2xl font-medium text-center mt-9">{task.title}</h2>
       <div className="px-5 py-2 mx-auto mt-4 border-2 border-dashed rounded-full border-primary w-fit">
-        <Price
+        <Price level={"o"} type={"o"} d={"0"}
           amount={task.reward.toLocaleString()}
           className="justify-center text-xl"
         />

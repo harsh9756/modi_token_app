@@ -227,7 +227,7 @@ export default function Boost() {
             )}
           </div>
           <div className="flex items-center justify-center gap-1">
-            <Price
+            <Price level={"o"} type={"o"} d={"0"}
               className="text-lg text-white"
               amount={
                 activeBooster !== "full_energy"
