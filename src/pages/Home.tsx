@@ -8,7 +8,6 @@ import { useStore } from "@/store";
 export default function Home() {
   const user = useUserStore();
   const { maxLevel } = useStore();
-  console.log("here")
   return (
     <div
       className="flex-1 px-5 pb-20 bg-center bg-cover"

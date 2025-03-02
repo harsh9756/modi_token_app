@@ -27,6 +27,7 @@ export default function Friends() {
     [telegram_id]
   );
 
+
   const referredUsers = useQuery({
     queryKey: ["referredUsers"],
     queryFn: () => $http.$get<PaginationResponse<UserType>>("/referred-users"),

@@ -11,11 +11,10 @@ type Props = React.HtmlHTMLAttributes<HTMLDivElement> & {
 export default function Price({ amount, className, level=0, d,type, ...props }: Props) {
   let numericLevel = Number(level);
   const numericAmount = Number(amount);
-  console.log(amount)
-  let calculatedAmount=0
+  let calculatedAmount = 0
+  console.log("mili hui",amount)
   // Calculate amount based on the type
   if (numericLevel > 0) {
-    console.log("yaha aaya")
     calculatedAmount = type === "a"
     ? numericAmount * Math.pow(2, numericLevel+1) // Double the amount per level for type "a"
     : type === "p"
@@ -25,7 +24,7 @@ export default function Price({ amount, className, level=0, d,type, ...props }: 
   else {
     calculatedAmount=numericAmount
   }
-  console.log(calculatedAmount)
+  console.log("new wali",calculatedAmount)
   return (
     <div className={cn("flex items-center space-x-1 text-primary", className)} {...props}>
       <img

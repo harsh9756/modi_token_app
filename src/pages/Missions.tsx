@@ -18,6 +18,7 @@ export default function Missions() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [ownedMissions, setOwnedMissions] = useState<Mission[]>([]);
   const [newMissions, setNewMissions] = useState<Mission[]>([]);
+  const [expiredMissions, setExpiredMissions] = useState<Mission[]>([]);
   const [selectedMission, setSelectedMission] = useState<Mission | null>(null);
 
   const { data, isLoading } = useQuery({
@@ -25,23 +26,28 @@ export default function Missions() {
     queryFn: () => $http.$get<{ all_missions: Mission[]; user_missions: Mission[] }>(`/clicker/missions`),
     staleTime: 1000 * 60,
   });
+
   useEffect(() => {
     if (data) {
       setOwnedMissions(data.user_missions || []);
       setNewMissions((data.all_missions || []).filter(
-        (mission) => !(data.user_missions || []).some((owned) => owned.id === mission.id)
+        (mission) => !(data.user_missions || []).some((owned) => owned.id === mission.id) && !mission.expired
+      ));
+      setExpiredMissions((data.all_missions || []).filter(
+        (mission) => mission.expired && !(data.user_missions || []).some((owned) => owned.id === mission.id)
       ));
     }
   }, [data]);
+
   useEffect(() => {
-    setActiveTab("owned")
+    setActiveTab("owned");
     if (data && ownedMissions.length) {
       setNewMissions((data.all_missions || []).filter(
-          (mission) => !ownedMissions.some((owned) => owned.id === mission.id)
-        )
-      );
+        (mission) => !ownedMissions.some((owned) => owned.id === mission.id) && !mission.expired
+      ));
     }
-  }, [ownedMissions, data]);  
+  }, [ownedMissions, data]);
+
   return (
     <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12 modal-body">
@@ -51,7 +57,8 @@ export default function Missions() {
           <span className="text-3xl font-bold">{Math.floor(user.balance)?.toLocaleString()}</span>
         </div>
         <div className="mt-10">
-          <div className="flex gap-4">
+          <div className="flex justify-evenly bg-white/10 backdrop-blur-sm p-2 rounded-lg">
+
             <button
               className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "owned" })}
               onClick={() => setActiveTab("owned")}
@@ -64,6 +71,12 @@ export default function Missions() {
             >
               New Missions
             </button>
+            <button
+              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "expired" })}
+              onClick={() => setActiveTab("expired")}
+            >
+              Expired Missions
+            </button>
           </div>
           <div className="mt-6">
             <div className="grid grid-cols-2 gap-3">
@@ -72,25 +85,32 @@ export default function Missions() {
                   <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
                 </div>
               ) : (
-                  (activeTab === "owned" ? ownedMissions : newMissions).map((mission, key) => (
-                    <div key={key} className={cn( "flex flex-col py-3 px-3 bg-[#D9D9D9]/10 rounded-xl cursor-pointer" )}
+                (activeTab === "owned" ? ownedMissions : activeTab === "new" ? newMissions : expiredMissions).map((mission, key) => (
+                  <div key={key} className={cn("flex flex-col py-3 px-3 bg-[#D9D9D9]/10 rounded-xl cursor-pointer")}
                     onClick={() => {
-                      setSelectedMission(mission);
-                      setOpenDrawer(true);
+                      if (activeTab != "expired") {
+                        setSelectedMission(mission);
+                        setOpenDrawer(true);
+
+                      }
                     }}>
                     <div className="flex items-start flex-1 space-x-3">
                       <img src={mission.image} alt={mission.name} className="object-contain w-16 h-16" />
                       <div className="flex flex-col">
                         <p className="text-[10px] font-bold">{mission.name}</p>
                         <p className="mt-1 text-[10px] font-medium">Profit per hour </p>
-                          <Price d="a" type={"p"} level={mission.mission_level} amount={mission.production_per_hour || 0} className="mt-2 text-[10px]"/>
+                        <Price d="a" type="p" level={mission.mission_level} amount={mission.production_per_hour || 0} className="mt-2 text-[10px]" />
                       </div>
                     </div>
                     {mission && (
                       <div className="pt-3 mt-3 border-t border-dashed border-white/10">
                         <div className="flex items-center space-x-3">
-                            <p className="w-16 text-xs font-bold">LVL { mission.mission_level || 0}</p>
-                          {mission.required_user_level && mission.required_user_level > user.level!.level ? (
+                          <p className="w-16 text-xs font-bold">LVL {mission.mission_level || 0}</p>
+                          {mission.expired && activeTab === "expired" ? (
+                            <button className="text-[10px] bg-gray-500 text-white px-2 py-1 rounded" disabled>
+                              Expired
+                            </button>
+                          ) : mission.required_user_level && mission.required_user_level > user.level!.level ? (
                             <div className="flex items-center gap-2 text-[10px]">
                               <img src="/images/lock.png" alt="lock" className="object-contain w-5 h-5" />
                               <span>Mission required lvl {mission.required_user_level}</span>
@@ -101,9 +121,7 @@ export default function Missions() {
                               <span>Mission required friends {mission.required_friends_invitation} invited</span>
                             </div>
                           ) : (
-                            mission && (
-                              <Price d="a" type={"a"} amount={mission.basePrice} level={mission.mission_level} className="text-[10px]" />
-                            )
+                            <Price d="a" type="a" amount={mission.basePrice} level={mission.mission_level} className="text-[10px]" />
                           )}
                         </div>
                       </div>

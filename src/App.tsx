@@ -69,7 +69,6 @@ function App() {
 
   useEffect(() => {
     if (!user) return () => {};
-
     const signIn = async () => {
       if (localStorage.getItem("token") === null) {
         const { data } = await $http.post<{
@@ -87,15 +86,13 @@ function App() {
         setBearerToken(data.token);
         setIsFirstLoad(data.first_login);
       }
-
+      
       const data = await $http.$get<
-        {
-          user: UserType;
-          boosters: Record<BoosterTypes, BoosterType>;
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } & Record<string, any>
+      {user: UserType;
+        boosters: Record<BoosterTypes, BoosterType>;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } & Record<string, any>
       >("/clicker/sync");
-
       useUserStore.setState({
         ...data.user,
       });
@@ -108,7 +105,6 @@ function App() {
         levels: data.levels,
         levelUp: data.level_up,
         referral: data.referral,
-        missionTypes: data.mission_types,
         totalReferals: data.total_referals,
       });
     };

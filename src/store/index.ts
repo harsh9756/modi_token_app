@@ -1,4 +1,3 @@
-import { MissionType } from "@/types/MissionType";
 import { ReferralType } from "@/types/ReferralType";
 import {
   BoosterType,
@@ -20,7 +19,6 @@ type StoreStateType = {
     earn_per_tap: number;
   };
   referral: ReferralType;
-  missionTypes: MissionType[];
   totalReferals: number;
 };
 
@@ -50,5 +48,4 @@ export const useStore = create<StoreStateType>(() => ({
       levelUp: {},
     },
   },
-  missionTypes: [],
 }));
