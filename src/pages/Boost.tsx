@@ -54,7 +54,7 @@ const boosterDetails: Record<
 };
 
 export default function Boost() {
-   
+
   const [open, setOpen] = useState(false);
   const [activeBooster, setActiveBooster] = useState<BoosterTypes>("multi_tap");
   const { boosters, dailyResetEnergy, maxDailyResetEnergy } = useStore();
@@ -70,6 +70,8 @@ export default function Boost() {
     return balance < boosters[activeBooster].cost;
   }, [balance, boosters, activeBooster]);
 
+  console.log("aaaaaaaaaaaaaaaaaaaaaaaaa", insufficientBalance, balance, boosters?.[activeBooster].cost)
+
   const buyBoost = useMutation({
     mutationFn: (boost: BoosterTypes) =>
       boost !== "full_energy"
@@ -78,14 +80,14 @@ export default function Boost() {
     onSuccess: (response) => {
       toast.success(response.data.message);
       setOpen(false);
-  
+
       if (activeBooster !== "full_energy") {
         useUserStore.setState({
           earn_per_tap: response.data.earn_per_tap,
           balance: response.data.balance,
           max_energy: response.data.max_energy,
         });
-  
+
         useStore.setState((state) => {
           state.boosters[activeBooster].level += 1;
           const level = state.boosters[activeBooster].level;
@@ -108,8 +110,6 @@ export default function Boost() {
     onError: (error: any) =>
       toast.error(error?.response?.data?.message || "Something went wrong"),
   });
-  
-  console.log("Cost:", boosters[activeBooster]?.cost);
 
   return (
     <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
@@ -232,8 +232,7 @@ export default function Boost() {
             )}
           </div>
           <div className="flex items-center justify-center gap-1">
-            <Price level={"o"} type={"o"} d={"0"}
-              className="text-lg text-white"
+            <Price level={"o"} type={"o"} d={"0"} className="text-lg text-white"
               amount={
                 activeBooster !== "full_energy"
                   ? boosters[activeBooster].cost

@@ -12,7 +12,6 @@ export default function Price({ amount, className, level=0, d,type, ...props }: 
   let numericLevel = Number(level);
   const numericAmount = Number(amount);
   let calculatedAmount = 0
-  console.log("mili hui",amount)
   // Calculate amount based on the type
   if (numericLevel > 0) {
     calculatedAmount = type === "a"
@@ -24,7 +23,6 @@ export default function Price({ amount, className, level=0, d,type, ...props }: 
   else {
     calculatedAmount=numericAmount
   }
-  console.log("new wali",calculatedAmount)
   return (
     <div className={cn("flex items-center space-x-1 text-primary", className)} {...props}>
       <img

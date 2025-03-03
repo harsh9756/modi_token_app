@@ -1,7 +1,9 @@
 export type UserType = {
   telegram_id: number;
   balance: number;
+  setBalance: any;
   earn_per_tap: number;
+  set_PPH: any;
   energy_limit_level: number;
   first_name: string;
   id: number;

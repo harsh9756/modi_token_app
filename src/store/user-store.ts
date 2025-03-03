@@ -4,12 +4,16 @@ import { create } from "zustand";
 type UserStore = UserType & {
   UserTap: () => boolean;
   incraseEnergy: (value: number) => void;
+  setBalance: (newBalance: number) => void; 
+  set_PPH: (newETP: number) => void; 
 };
+
 
 export const useUserStore = create<UserStore>((set, get) => ({
   telegram_id: 0,
   max_energy: 0,
   balance: 0,
+  setBalance: (newBalance: number) => set({ balance: newBalance }),
   earn_per_tap: 0,
   available_energy: 0,
   energy_limit_level: 0,
@@ -21,6 +25,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
   login_streak: 0,
   multi_tap_level: 0,
   production_per_hour: 0,
+  set_PPH: (newPPH: number) => set({ production_per_hour: newPPH }),
   updated_at: "",
   username: "",
   UserTap() {
