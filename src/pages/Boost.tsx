@@ -4,7 +4,7 @@ import { $http } from "@/lib/http";
 import { cn, compactNumber } from "@/lib/utils";
 import { BoosterTypes } from "@/types/UserType";
 import { useMutation } from "@tanstack/react-query";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { Loader2Icon } from "lucide-react";
 import { useUserStore } from "@/store/user-store";
@@ -12,7 +12,9 @@ import Price from "@/components/Price";
 import { useStore } from "@/store";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import duration from "dayjs/plugin/duration";
 dayjs.extend(relativeTime);
+dayjs.extend(duration);
 
 // +500 energy - 1,000 - 1lvl
 // +500 energy - 2,000 - 2lvl
@@ -54,10 +56,9 @@ const boosterDetails: Record<
 };
 
 export default function Boost() {
-
   const [open, setOpen] = useState(false);
   const [activeBooster, setActiveBooster] = useState<BoosterTypes>("multi_tap");
-  const { boosters, dailyResetEnergy, maxDailyResetEnergy } = useStore();
+  const { boosters, dailyResetEnergy, maxDailyResetEnergy, setDailyResetEnergy } = useStore();
   const { balance } = useUserStore();
 
   const canUseDailyResetEnergy = useMemo(
@@ -70,7 +71,16 @@ export default function Boost() {
     return balance < boosters[activeBooster].cost;
   }, [balance, boosters, activeBooster]);
 
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaaa", insufficientBalance, balance, boosters?.[activeBooster].cost)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setDailyResetEnergy((prev) => ({
+        ...prev,
+        next_available_at: dayjs(prev.next_available_at).subtract(1, 'second').toISOString(),
+      }));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [setDailyResetEnergy]);
 
   const buyBoost = useMutation({
     mutationFn: (boost: BoosterTypes) =>
@@ -135,7 +145,7 @@ export default function Boost() {
               className="object-contain w-9 h-9 mix-blend-screen"
             />
             <div className="text-sm font-medium text-left">
-              <p>Full energy</p>
+              <p>Full energyyy</p>
               <p className={cn({ "text-white/80": !canUseDailyResetEnergy })}>
                 {maxDailyResetEnergy - dailyResetEnergy.uses_today}/
                 {maxDailyResetEnergy} available
@@ -144,7 +154,7 @@ export default function Boost() {
             {!canUseDailyResetEnergy && (
               <div className="self-end h-full ml-auto text-sm text-white/80">
                 <span>
-                  {dayjs(dailyResetEnergy.next_available_at).fromNow(true)} left
+                  {dayjs.duration(dayjs(dailyResetEnergy.next_available_at).diff(dayjs())).format("HH:mm:ss")} left
                 </span>
               </div>
             )}

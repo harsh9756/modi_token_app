@@ -20,9 +20,10 @@ type StoreStateType = {
   };
   referral: ReferralType;
   totalReferals: number;
+  setDailyResetEnergy: (update: (prev: DailyBoosterType) => DailyBoosterType) => void;
 };
 
-export const useStore = create<StoreStateType>(() => ({
+export const useStore = create<StoreStateType>((set) => ({
   boosters: {
     energy_limit: { level: 0, cost: 0, increase_by: 0 },
     multi_tap: { level: 0, cost: 0, increase_by: 0 },
@@ -48,4 +49,7 @@ export const useStore = create<StoreStateType>(() => ({
       levelUp: {},
     },
   },
+  setDailyResetEnergy: (update) => set((state) => ({
+    dailyResetEnergy: update(state.dailyResetEnergy),
+  })),
 }));

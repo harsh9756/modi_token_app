@@ -68,7 +68,7 @@ function App() {
   }, [balance, levels]);
 
   useEffect(() => {
-    if (!user) return () => {};
+    if (!user) return () => { };
     const signIn = async () => {
       if (localStorage.getItem("token") === null) {
         const { data } = await $http.post<{
@@ -86,16 +86,18 @@ function App() {
         setBearerToken(data.token);
         setIsFirstLoad(data.first_login);
       }
-      
+
       const data = await $http.$get<
-      {user: UserType;
-        boosters: Record<BoosterTypes, BoosterType>;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } & Record<string, any>
+        {
+          user: UserType;
+          boosters: Record<BoosterTypes, BoosterType>;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } & Record<string, any>
       >("/clicker/sync");
       useUserStore.setState({
         ...data.user,
       });
+      console.log(data)
 
       useStore.setState({
         totalDailyRewards: data.total_daily_rewards,
