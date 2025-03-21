@@ -13,10 +13,8 @@ export default function Price({ amount, className, level=0, d, type, ...props }:
   let numericAmount = 0;
   if (amount !== "Free") {
     numericAmount = Number(amount);
-  } else {
-    numericAmount = "Free";
   }
-  let calculatedAmount = 0;
+  let calculatedAmount: number | string = 0;
   // Calculate amount based on the type
   if (numericLevel > 0) {
     calculatedAmount = type === "a"
@@ -27,6 +25,9 @@ export default function Price({ amount, className, level=0, d, type, ...props }:
   } else {
     calculatedAmount = numericAmount;
   }
+  if (amount === "Free") {
+    calculatedAmount = "Free";
+  }
   return (
     <div className={cn("flex items-center space-x-1 text-primary", className)} {...props}>
       <img
@@ -34,7 +35,7 @@ export default function Price({ amount, className, level=0, d, type, ...props }:
         alt="coin"
         className="object-contain w-5 h-5"
       />
-      <span className="font-bold">{type === "p" ? "+" : ""}{calculatedAmount.toLocaleString("en-US", { maximumFractionDigits: 0 })}</span>
+      <span className="font-bold">{type === "p" ? "+" : ""}{typeof calculatedAmount === "number" ? calculatedAmount.toLocaleString("en-US", { maximumFractionDigits: 0 }) : calculatedAmount}</span>
     </div>
   );
 }
