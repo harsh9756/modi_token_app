@@ -33,7 +33,7 @@ export default function UserGameDetails({
         <div className="inline-flex items-center space-x-1.5 text-white font-bold">
           <img className="object-contain w-5 h-5" src="/images/coin.png" />
           <span className="text-sm">
-            +{compactNumber(user.production_per_hour)}
+            +{user.production_per_hour.toLocaleString("en-US", { maximumFractionDigits: 3 })}
           </span>
         </div>
       </div>

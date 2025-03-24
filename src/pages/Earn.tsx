@@ -52,7 +52,7 @@ export default function Earn() {
           className="object-contain w-32 h-32 mx-auto"
         />
         <h1 className="mt-4 text-2xl font-bold text-center uppercase">
-          EARN MORE COINS
+          EARN MORE GEMS
         </h1>
         {videoTasks.length > 0 && (
           <>

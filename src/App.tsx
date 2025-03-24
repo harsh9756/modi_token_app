@@ -97,7 +97,7 @@ function App() {
       useUserStore.setState({
         ...data.user,
       });
-      console.log(data)
+      console.log("userdata",data)
 
       useStore.setState({
         totalDailyRewards: data.total_daily_rewards,

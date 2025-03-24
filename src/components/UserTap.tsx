@@ -71,7 +71,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
     useClicksStore.setState({ clicks: [] });
 
     const interval = setInterval(() => {
-      incraseEnergy(3);
+      incraseEnergy(0.001);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -114,7 +114,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
             className="object-contain w-8 h-8"
           />
           <span className="text-xs font-bold">
-            {user.available_energy} / {user.max_energy}
+            {user.available_energy.toLocaleString("en-US", { maximumFractionDigits: 3 })} / {user.max_energy}
           </span>
         </div>
         <Link

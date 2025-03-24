@@ -43,8 +43,8 @@ export default function Friends() {
         <div className="mt-4 space-y-2">
           <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
             <img
-              src="/images/chest.png"
-              alt="chest"
+              src="/images/bounty.png"
+              alt="bounty"
               className="object-contain w-9 h-9 mix-blend-screen"
             />
             <div className="text-sm font-medium text-left">
@@ -64,8 +64,8 @@ export default function Friends() {
           </button>
           <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
             <img
-              src="/images/chest.png"
-              alt="chest"
+              src="/images/bounty.png"
+              alt="bounty"
               className="object-contain w-9 h-9 mix-blend-screen"
             />
             <div className="text-sm font-medium">

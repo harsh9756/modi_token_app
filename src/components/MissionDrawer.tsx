@@ -28,7 +28,7 @@ export default function MissionDrawer({
     onSuccess: ({ data }) => {
       toast.success(data.message || "Mission upgraded successfully");
       // Update balance after upgrade
-      console.log(data)
+      console.log("post purchase",data)
       setBalance(data.updated_balance);
       set_PPH(data.updated_production)
       setOwnedMissions((prevMissions: any) => {

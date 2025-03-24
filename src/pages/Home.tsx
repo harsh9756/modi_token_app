@@ -35,7 +35,7 @@ export default function Home() {
           className="object-contain w-20 h-20"
         />
         <span className="text-3xl font-bold text-gradient">
-          {Math.floor(user.balance)?.toLocaleString()}
+          {user.balance.toLocaleString("en-US", { maximumFractionDigits: 3 })}
         </span>
       </div>
       <div className="">

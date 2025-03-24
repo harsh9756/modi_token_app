@@ -40,7 +40,7 @@ export default function DailyDrawer({ ...props }: DrawerProps) {
       <img src="/images/coins.png" alt="coins-3" className="mx-auto h-28" />
       <h2 className="mt-6 text-2xl font-bold text-center">Daily Reward</h2>
       <p className="mt-2.5 text-center font-medium">
-        Acquire coins for logging into the game daily without skipping
+        Acquire gems for logging into the game daily without skipping
       </p>
       <div className="grid grid-cols-4 gap-3 mt-10 overflow-y-auto max-h-64">
         {dailyTasks.data?.map((item, key) => (
