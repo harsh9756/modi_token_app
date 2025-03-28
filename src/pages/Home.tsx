@@ -9,12 +9,9 @@ export default function Home() {
   const user = useUserStore();
   const { maxLevel } = useStore();
   return (
-    <div
-      className="flex-1 px-5 pb-20 bg-center bg-cover"
-      style={{
-        backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
-      }}
-    >
+    <div className="flex-1 px-5 pb-20 bg-center bg-cover" style={{
+      backgroundImage: `url(${levelConfig.bg[user?.level?.level || 1]})`,
+    }}>
       <header className="flex items-center justify-between mt-4">
         <div className="flex items-center gap-2 px-3 py-2 border-2 rounded-full bg-black/20 border-white/10">
           <img
@@ -26,23 +23,21 @@ export default function Home() {
             {user?.first_name} {user?.last_name}
           </p>
         </div>
+        <div className="flex items-center gap-2 px-3 py-2 border-2 rounded-full bg-black/20 border-white/10">
+          <img
+            src="/images/coins.png"
+            alt="coins"
+            className="object-contain w-10 h-10"
+          />
+          <span className="text-3xl font-bold text-gradient">
+            {user.balance.toLocaleString("en-US", { maximumFractionDigits: 3 })}
+          </span>
+        </div>
       </header>
-      <UserGameDetails className="mt-6" />
-      <div className="flex mt-6 space-x-1.5 justify-center items-center select-none">
-        <img
-          src="/images/coins.png"
-          alt="coins"
-          className="object-contain w-20 h-20"
-        />
-        <span className="text-3xl font-bold text-gradient">
-          {user.balance.toLocaleString("en-US", { maximumFractionDigits: 3 })}
-        </span>
-      </div>
+      <UserGameDetails className="mt-6" /> <br />
       <div className="">
-        <Link
-          to={"/leaderboard"}
-          className="flex items-center justify-between gap-2"
-        >
+        <Link to={"/leaderboard"}
+          className="flex items-center justify-between gap-2" >
           <div className="flex items-center text-xs">
             <span>{user.level?.name}</span>
           </div>

@@ -44,10 +44,10 @@ export default function Leaderboard() {
         <div className="">
           <Swiper
             ref={swiperRef}
-            spaceBetween={30}
-            modules={[EffectFade, Navigation]}
-            effect={"fade"}
-            className="rounded-xl"
+            spaceBetween={0} // No extra space between slides
+            slidesPerView={1} // Ensure only one slide is visible at a time
+            modules={[Navigation]} // Removed EffectFade for slide effect
+            className="rounded-xl overflow-hidden" // Prevent slides from spilling out
             navigation={{
               enabled: true,
               nextEl: ".custom-swiper-button-next",
@@ -56,7 +56,10 @@ export default function Leaderboard() {
             onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
           >
             {levels?.map((item, i) => (
-              <SwiperSlide key={`slide-${i}`}>
+              <SwiperSlide
+                key={`slide-${i}`}
+                className="relative z-10 bg-black" // Ensure proper stacking context
+              >
                 <div
                   className="py-4 bg-center bg-cover rounded-xl"
                   style={{

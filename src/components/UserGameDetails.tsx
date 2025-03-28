@@ -19,7 +19,7 @@ export default function UserGameDetails({
         </div>
       </div>
       <div className="flex flex-col items-center justify-center flex-1 p-2 select-none bg-white/10 backdrop-blur-sm rounded-xl">
-        <p className="mb-1 text-xs text-center">Coins to level up</p>
+        <p className="mb-1 text-xs text-center">Gems to level up</p>
         {user.level && (
           <div className="inline-flex items-center space-x-1.5 text-gradient font-bold">
             <span className="text-sm">

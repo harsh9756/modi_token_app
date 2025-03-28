@@ -69,9 +69,8 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
 
   useEffect(() => {
     useClicksStore.setState({ clicks: [] });
-
     const interval = setInterval(() => {
-      incraseEnergy(0.001);
+      incraseEnergy(1);
     }, 3000);
 
     return () => clearInterval(interval);
@@ -83,13 +82,13 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
           ref={userTapButtonRef}
           className="flex items-center justify-center mx-auto transition-all rounded-full outline-none select-none disabled:opacity-80 disabled:cursor-not-allowed"
           disabled={user.available_energy < user.earn_per_tap}
-          // onClick={tabMe}
-          onPointerUp={tabMe}
+          onClick={tabMe}
+          // onPointerUp={tabMe}
         >
           <img
             src={levelConfig.frogs[user.level?.level || 1]}
             alt="level image"
-            className="object-contain max-w-full w-80 h-80"
+            className="object-contain max-w-full w-64 h-64"
             style={{ filter: levelConfig.filter[user.level?.level || 1] }}
           />
         </button>

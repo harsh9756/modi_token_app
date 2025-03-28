@@ -31,6 +31,7 @@ function App() {
     webApp.expand();
   }, []);
 
+
   useEffect(() => {
     const interval = setInterval(() => {
       useUserStore.setState((state) => {
@@ -86,7 +87,6 @@ function App() {
         setBearerToken(data.token);
         setIsFirstLoad(data.first_login);
       }
-
       const data = await $http.$get<
         {
           user: UserType;
