@@ -1,5 +1,5 @@
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { EffectFade, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import SwapPrevIcon from "@/components/icons/SwapPrevIcon";
 import SwapNextIcon from "@/components/icons/SwapNextIcon";
 import { useEffect, useRef, useState } from "react";
