@@ -42,7 +42,6 @@ export default function Earn() {
   );
 
   if (isLoading) return <LoadingPage />;
-
   return (
     <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
