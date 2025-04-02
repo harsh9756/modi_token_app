@@ -23,7 +23,7 @@ export default function Friends() {
   const [showMoreBonuses, setShowMoreBonuses] = useState(false);
 
   const referralLink = useMemo(
-    () => `${import.meta.env.VITE_BOT_URL}/?startapp=${telegram_id}`,
+    () => `${import.meta.env.VITE_BOT_URL}/?startapp=ref${telegram_id}`,
     [telegram_id]
   );
 
