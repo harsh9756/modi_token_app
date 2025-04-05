@@ -16,16 +16,7 @@ import duration from "dayjs/plugin/duration";
 dayjs.extend(relativeTime);
 dayjs.extend(duration);
 
-// +500 energy - 1,000 - 1lvl
-// +500 energy - 2,000 - 2lvl
-// +500 energy - 5,000 - 3lvl
-// +1000 energy - 10,000 - 4lvl
-// +1000 energy - 25,000 - 5lvl
-// +5000 energy - 50,000 - 6lvl
-// +5000 energy - 100,000 - 7lvl
-// +10000 energy - 250,000 - 8lvl
-// +10000 energy - 500,000 - 9lvl
-// +20000 energy - 1,000,000 - 10lvl
+
 
 const boosterDetails: Record<
   BoosterTypes,
@@ -72,6 +63,8 @@ export default function Boost() {
   }, [balance, boosters, activeBooster]);
 
   useEffect(() => {
+    if (!dailyResetEnergy.next_available_at) return; // Only start the interval if energy is used
+
     const interval = setInterval(() => {
       setDailyResetEnergy((prev) => ({
         ...prev,
@@ -80,7 +73,7 @@ export default function Boost() {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [setDailyResetEnergy]);
+  }, [dailyResetEnergy.next_available_at, setDailyResetEnergy]);
 
   const buyBoost = useMutation({
     mutationFn: (boost: BoosterTypes) =>
@@ -101,7 +94,7 @@ export default function Boost() {
         useStore.setState((state) => {
           state.boosters[activeBooster].level += 1;
           const level = state.boosters[activeBooster].level;
-          state.boosters[activeBooster].cost = 1000 * (level * (level + 1)) / 2;
+          state.boosters[activeBooster].cost = 5 * (level * (level + 1)) / 2;
           return state;
         });
       } else {
@@ -120,7 +113,6 @@ export default function Boost() {
     onError: (error: any) =>
       toast.error(error?.response?.data?.message || "Something went wrong"),
   });
-
   return (
     <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
       <div className="min-h-[600px] w-full modal-body py-8 px-6">
@@ -183,7 +175,7 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {compactNumber(boosters.multi_tap.cost)}
+                  {(boosters.multi_tap.cost)}
                 </span>
                 <span className="text-sm">{boosters.multi_tap.level} LVL</span>
               </div>
@@ -235,7 +227,7 @@ export default function Boost() {
             <p className="">{boosterDetails[activeBooster].description}</p>
             {activeBooster !== "full_energy" && (
               <p className="mt-2">
-                +{compactNumber(boosters[activeBooster].increase_by)}{" "}
+                +{(boosters[activeBooster].increase_by)}{" "}
                 {boosterDetails[activeBooster].shortDescription} for level{" "}
                 {boosters[activeBooster].level}
               </p>
