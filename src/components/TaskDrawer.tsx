@@ -80,12 +80,20 @@ export default function TaskDrawer({
         )}
       <Button
         className="w-full mt-12"
-        asChild
-        onClick={() => submitMutation.mutate()}
+        onClick={() => {
+          if (task.link) {
+            if (window.Telegram?.WebApp) {
+              Telegram.WebApp.openTelegramLink(task.link);
+            } else {
+              // Fallback for localhost
+              window.open(task.link, "_blank");
+            }
+          } else {
+            toast.error("Invalid URL");
+          }
+        }}
       >
-        <a href={task.link} target="_blank">
-          {task.action_name}
-        </a>
+        {task.action_name}
       </Button>
 
       {!task.is_rewarded && (
