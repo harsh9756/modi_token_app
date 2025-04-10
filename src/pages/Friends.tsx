@@ -8,7 +8,7 @@ import { PaginationResponse } from "@/types/Response";
 import { UserType } from "@/types/UserType";
 import { useQuery } from "@tanstack/react-query";
 import { useCopyToClipboard } from "@uidotdev/usehooks";
-import { useMemo, useState } from "react";
+import { useMemo} from "react";
 import { toast } from "react-toastify";
 
 const shareMessage = encodeURI(
@@ -18,9 +18,8 @@ const shareMessage = encodeURI(
 export default function Friends() {
   const [, copy] = useCopyToClipboard();
   const { telegram_id } = useUserStore();
-  const { referral, levels } = useStore();
+  const { referral } = useStore();
 
-  const [showMoreBonuses, setShowMoreBonuses] = useState(false);
 
   const referralLink = useMemo(
     () => `${import.meta.env.VITE_BOT_URL}/?start=${telegram_id}`,
