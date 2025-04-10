@@ -114,17 +114,17 @@ export default function Boost() {
       toast.error(error?.response?.data?.message || "Something went wrong"),
   });
   return (
-    <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
+    <div className="flex flex-col justify-end bg-slate-300 flex-1">
       <div className="min-h-[600px] w-full modal-body py-8 px-6">
-        <h1 className="text-2xl font-bold text-center uppercase">
+        <h1 className="text-2xl font-bold text-center uppercase text-black">
           Boost your game
         </h1>
-        <p className="mt-8 text-sm font-bold text-center uppercase">
+        <p className="mt-8 text-sm font-bold text-center uppercase text-black">
           Free Daily Booster
         </p>
         <div className="mt-4">
           <button
-            className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
+            className="flex items-center w-full gap-4 px-4 py-2 bg-black/25 rounded-xl"
             onClick={() => {
               setOpen(true);
               setActiveBooster("full_energy");
@@ -136,15 +136,15 @@ export default function Boost() {
               alt="extra-power"
               className="object-contain w-9 h-9 mix-blend-screen"
             />
-            <div className="text-sm font-medium text-left">
+            <div className="text-sm font-medium text-left text-black">
               <p>Full energyyy</p>
-              <p className={cn({ "text-white/80": !canUseDailyResetEnergy })}>
+              <p className={cn({ "text-black/80": !canUseDailyResetEnergy })}>
                 {maxDailyResetEnergy - dailyResetEnergy.uses_today}/
                 {maxDailyResetEnergy} available
               </p>
             </div>
             {!canUseDailyResetEnergy && (
-              <div className="self-end h-full ml-auto text-sm text-white/80">
+              <div className="self-end h-full ml-auto text-sm text-black/80">
                 <span>
                   {dayjs.duration(dayjs(dailyResetEnergy.next_available_at).diff(dayjs())).format("HH:mm:ss")} left
                 </span>
@@ -152,10 +152,12 @@ export default function Boost() {
             )}
           </button>
         </div>
-        <p className="mt-8 text-sm font-bold text-center uppercase">Boosters</p>
+        <p className="mt-8 text-sm font-bold text-center uppercase text-black">
+          Boosters
+        </p>
         <div className="mt-4 space-y-2">
           <button
-            className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
+            className="flex items-center w-full gap-4 px-4 py-2 bg-black/25 rounded-xl"
             onClick={() => {
               setOpen(true);
               setActiveBooster("multi_tap");
@@ -166,7 +168,7 @@ export default function Boost() {
               alt="coin-2"
               className="object-contain w-9 h-9 mix-blend-screen"
             />
-            <div className="text-sm font-medium text-left">
+            <div className="text-sm font-medium text-left text-black">
               <p>Multi tap</p>
               <div className="flex items-center space-x-1">
                 <img
@@ -175,14 +177,14 @@ export default function Boost() {
                   className="object-contain w-5 h-5"
                 />
                 <span className="font-bold">
-                  {(boosters.multi_tap.cost)}
+                  {compactNumber(boosters.multi_tap.cost)}
                 </span>
                 <span className="text-sm">{boosters.multi_tap.level} LVL</span>
               </div>
             </div>
           </button>
           <button
-            className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl"
+            className="flex items-center w-full gap-4 px-4 py-2 bg-black/25 rounded-xl"
             onClick={() => {
               setOpen(true);
               setActiveBooster("energy_limit");
@@ -193,7 +195,7 @@ export default function Boost() {
               alt="bolt"
               className="object-contain w-9 h-9 mix-blend-screen"
             />
-            <div className="text-sm font-medium text-left">
+            <div className="text-sm font-medium text-left text-black">
               <p>Energy limit</p>
               <div className="flex items-center space-x-1">
                 <img
@@ -214,7 +216,7 @@ export default function Boost() {
       </div>
       <Drawer open={open} onOpenChange={setOpen}>
         <div className="relative space-y-6">
-          <h4 className="text-2xl font-bold text-center">
+          <h4 className="text-2xl font-bold text-center text-black">
             {boosterDetails[activeBooster].title}
           </h4>
           <img
@@ -223,7 +225,7 @@ export default function Boost() {
             className="object-contain w-24 h-24 mx-auto"
           />
 
-          <div className="text-sm font-medium text-center">
+          <div className="text-sm font-medium text-center text-black">
             <p className="">{boosterDetails[activeBooster].description}</p>
             {activeBooster !== "full_energy" && (
               <p className="mt-2">
@@ -234,7 +236,7 @@ export default function Boost() {
             )}
           </div>
           <div className="flex items-center justify-center gap-1">
-            <Price level={"o"} type={"o"} d={"0"} className="text-lg text-white"
+            <Price level={"o"} type={"o"} d={"0"} className="text-lg text-black"
               amount={
                 activeBooster !== "full_energy"
                   ? boosters[activeBooster].cost

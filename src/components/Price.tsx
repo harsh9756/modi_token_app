@@ -29,7 +29,7 @@ export default function Price({ amount, className, level=0, d, type, ...props }:
     calculatedAmount = "Free";
   }
   return (
-    <div className={cn("flex items-center space-x-1 text-primary", className)} {...props}>
+    <div className={cn("flex items-center space-x-1 text-black", className)} {...props}>
       <img
         src="/images/coin.png"
         alt="coin"

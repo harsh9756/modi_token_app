@@ -49,7 +49,7 @@ export default function DailyDrawer({ ...props }: DrawerProps) {
             className={cn(
               "flex flex-col border-2 border-transparent items-center bg-white/10 rounded-xl opacity-40 py-2.5 px-4",
               item.completed && "opacity-100 border-[#27D46C] bg-[#27D46C]/20",
-              item.available && !item.completed && "opacity-100 border-primary"
+              item.available && !item.completed && "opacity-100 border-black"
             )}
           >
             <p className="text-sm font-medium">{item.name}</p>
@@ -60,7 +60,7 @@ export default function DailyDrawer({ ...props }: DrawerProps) {
             />
             <p
               className={cn(
-                "font-bold text-primary",
+                "font-bold text-blue-800",
                 item.completed && "text-[#27D46C]"
               )}
             >

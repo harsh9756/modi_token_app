@@ -15,7 +15,7 @@ export default function MissionDrawer({
   ...props
 }: DrawerProps & {
   mission: any | null;
-  setOwnedMissions: any;
+    setOwnedMissions: any;
 }) {
   const { balance, setBalance,set_PPH } = useUserStore(); // Update balance state
   const insufficientBalance = useMemo(() => {
@@ -73,22 +73,22 @@ export default function MissionDrawer({
           d={"d"}
           level={mission.mission_level}
           amount={mission.production_per_hour}
-          className="justify-center mt-2 text-sm text-white"
+          className="justify-center mt-2 text-sm"
         />
       </div>
 
-      <div className="flex items-center justify-center mx-auto mt-6 space-x-1 text-white">
+      <div className="flex items-center justify-center mx-auto mt-6 space-x-1">
         <Price
           type="a"
           d={"d"}
           level={mission.mission_level}
           amount={mission.basePrice}
-          className="justify-center mt-2 text-sm text-white"
+          className="justify-center mt-2 text-sm"
         />
       </div>
 
       <Button
-        className="w-full mt-6"
+        className="w-full mt-6 text-xl"
         disabled={upgradeMutation.isPending || insufficientBalance}
         onClick={() => upgradeMutation.mutate()}
       >

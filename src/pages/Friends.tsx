@@ -33,14 +33,14 @@ export default function Friends() {
   });
 
   return (
-    <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
+    <div className="flex flex-col justify-end bg-slate-300 text-black flex-1">
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
         <h1 className="text-2xl font-bold text-center uppercase">Friends</h1>
         <p className="mt-2.5 font-medium text-center">
           You and your friend will receive bonuses.
         </p>
         <div className="mt-4 space-y-2">
-          <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
+          <button className="flex items-center w-full gap-4 px-4 py-2 bg-black/15 rounded-xl">
             <img
               src="/images/bounty.png"
               alt="bounty"
@@ -54,14 +54,14 @@ export default function Friends() {
                   alt="coin"
                   className="object-contain w-5 h-5"
                 />
-                <span className="font-bold text-primary">
+                <span className="font-bold ">
                   +{referral.base.welcome.toLocaleString()}
                 </span>
                 <span className="text-sm">for you and your friend</span>
               </div>
             </div>
           </button>
-          <button className="flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl">
+          <button className="flex items-center w-full gap-4 px-4 py-2 bg-black/15 rounded-xl">
             <img
               src="/images/bounty.png"
               alt="bounty"
@@ -75,7 +75,7 @@ export default function Friends() {
                   alt="coin"
                   className="object-contain w-5 h-5"
                 />
-                <span className="font-bold text-primary">
+                <span className="font-bold ">
                   +{referral.premium.welcome.toLocaleString()}
                 </span>
                 <span className="text-sm">for you and your friend</span>
@@ -85,78 +85,6 @@ export default function Friends() {
         </div>
         <div className="relative flex-1">
           <div className="absolute inset-0 w-full h-[calc(100%-1rem)] py-6 mt-4 overflow-y-scroll">
-            {!showMoreBonuses ? (
-              <div className="text-center">
-                <button
-                  className="rounded-full border-2 border-[#FFDAA3]/10 text-[#FFDAA3] text-xs font-bold py-2.5 px-4"
-                  onClick={() => setShowMoreBonuses((value) => !value)}
-                >
-                  More bonuses
-                </button>
-              </div>
-            ) : (
-              <>
-                <p
-                  className="mt-8 text-sm font-bold uppercase"
-                  onClick={() => setShowMoreBonuses((value) => !value)}
-                >
-                  Bonus for leveling up
-                </p>
-                <div className="relative flex-1 mt-6 min-h-60">
-                  <div className="absolute inset-0 w-full h-full overflow-y-auto">
-                    <table className="w-full">
-                      <thead className="text-xs text-white/30">
-                        <tr className="border-b border-[#D9D9D9]/10">
-                          <th className="px-2 py-2 text-left">Level</th>
-                          <th className="px-2 py-2 text-right">For friend</th>
-                          <th className="px-2 py-2 text-right">Premium</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {levels
-                          .filter((item) => referral.base.levelUp[item.level])
-                          .map((item, key) => (
-                            <tr
-                              key={key}
-                              className="border-b border-[#D9D9D9]/10"
-                            >
-                              <td className="px-2 py-2 text-xs">{item.name}</td>
-                              <td className="px-2 py-2">
-                                <div className="flex items-center justify-end gap-1">
-                                  <img
-                                    src="/images/coin.png"
-                                    alt="coin"
-                                    className="object-contain w-4 h-4"
-                                  />
-                                  <span className="text-xs font-medium text-primary">
-                                    {referral.base.levelUp[
-                                      item.level
-                                    ].toLocaleString()}
-                                  </span>
-                                </div>
-                              </td>
-                              <td className="px-2 py-2">
-                                <div className="flex items-center justify-end gap-1">
-                                  <img
-                                    src="/images/coin.png"
-                                    alt="coin"
-                                    className="object-contain w-4 h-4"
-                                  />
-                                  <span className="text-xs font-medium text-primary">
-                                    {(
-                                      referral.premium.levelUp[item.level] || 0
-                                    ).toLocaleString()}
-                                  </span>
-                                </div>
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </>
-            )}
             <p className="mt-8 text-sm font-bold uppercase">
               List of your friends{" "}
               {referredUsers.data?.meta
@@ -172,7 +100,7 @@ export default function Friends() {
                 {referredUsers.data.data.map((item, key) => (
                   <div
                     key={key}
-                    className="flex items-center justify-between px-4 py-3 bg-white/10 rounded-xl"
+                    className="flex items-center justify-between px-4 py-3 bg-black/15 rounded-xl"
                   >
                     <div className="flex items-center gap-2">
                       <img
@@ -193,7 +121,7 @@ export default function Friends() {
                         alt="coin"
                         className="object-contain w-5 h-5"
                       />
-                      <span className="text-sm font-medium text-primary">
+                      <span className="text-sm font-medium ">
                         {compactNumber(item.balance)}
                       </span>
                     </div>
@@ -201,8 +129,8 @@ export default function Friends() {
                 ))}
               </div>
             ) : (
-              <div className="flex items-center justify-center px-4 mt-4 border-2 border-dashed rounded-xl border-white/10 h-14">
-                <p className="text-xs font-medium text-center text-white/30">
+              <div className="flex items-center justify-center px-4 mt-4 border-2 border-dashed rounded-xl border-black/40 h-14">
+                <p className="text-xs font-medium text-center text-black/70">
                   You didn’t invite anyone yet
                 </p>
               </div>

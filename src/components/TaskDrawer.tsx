@@ -65,7 +65,7 @@ export default function TaskDrawer({
         className="object-contain h-24 mx-auto"
       />
       <h2 className="text-2xl font-medium text-center mt-9">{task.name}</h2>
-      <div className="px-5 py-2 mx-auto mt-4 border-2 border-dashed rounded-full border-primary w-fit">
+      <div className="px-5 py-2 mx-auto mt-4 border-2 border-dashed rounded-full border-black w-fit">
         <Price level={"o"} type={"o"} d={"0"}
           amount={task.reward_coins.toLocaleString()}
           className="justify-center text-xl"

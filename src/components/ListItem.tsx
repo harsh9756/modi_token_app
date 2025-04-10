@@ -19,7 +19,7 @@ export default function ListItem({
   return (
     <button
       className={cn(
-        "group flex items-center w-full gap-4 px-4 py-2 bg-white/10 rounded-xl",
+        "group flex items-center w-full gap-4 px-4 py-2 bg-black/20 rounded-xl",
 
         className
       )}

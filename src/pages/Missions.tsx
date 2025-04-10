@@ -49,30 +49,29 @@ export default function Missions() {
   }, [ownedMissions, data]);
 
   return (
-    <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
+    <div className="flex flex-col justify-end bg-slate-300 text-black flex-1">
       <div className="flex flex-col flex-1 w-full h-full px-6 pb-24 mt-12 modal-body">
         <UserGameDetails className="mt-4" />
         <div className="flex items-center justify-center mt-10 space-x-1 text-gradient">
           <img src="/images/coins.png" alt="coins" className="object-contain w-14 h-14" />
-          <span className="text-3xl font-bold">{Math.floor(user.balance)?.toLocaleString()}</span>
+          <span className="text-3xl text-black font-bold">{Math.floor(user.balance)?.toLocaleString()}</span>
         </div>
         <div className="mt-10">
-          <div className="flex justify-evenly bg-white/10 backdrop-blur-sm p-2 rounded-lg">
-
+          <div className="flex justify-evenly bg-black/20 backdrop-blur-sm p-2 rounded-lg">
             <button
-              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "owned" })}
+              className={cn("text-sm font-bold uppercase", { "opacity-40": activeTab !== "owned" })}
               onClick={() => setActiveTab("owned")}
             >
               Owned Missions
             </button>
             <button
-              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "new" })}
+              className={cn("text-sm font-bold uppercase", { "opacity-40": activeTab !== "new" })}
               onClick={() => setActiveTab("new")}
             >
               New Missions
             </button>
             <button
-              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "expired" })}
+              className={cn("text-sm font-bold uppercase", { "opacity-40": activeTab !== "expired" })}
               onClick={() => setActiveTab("expired")}
             >
               Expired Missions
@@ -86,7 +85,7 @@ export default function Missions() {
                 </div>
               ) : (
                 (activeTab === "owned" ? ownedMissions : activeTab === "new" ? newMissions : expiredMissions).map((mission, key) => (
-                  <div key={key} className={cn("flex flex-col py-3 px-3 bg-[#D9D9D9]/10 rounded-xl cursor-pointer")}
+                  <div key={key} className={cn("flex flex-col py-3 px-3 bg-black/10 rounded-xl cursor-pointer")}
                     onClick={() => {
                       if (activeTab != "expired") {
                         setSelectedMission(mission);
@@ -103,7 +102,7 @@ export default function Missions() {
                       </div>
                     </div>
                     {mission && (
-                      <div className="pt-3 mt-3 border-t border-dashed border-white/10">
+                      <div className="pt-3 mt-3 border-t border-dashed border-black/50">
                         <div className="flex items-center space-x-3">
                           <p className="w-16 text-xs font-bold">LVL {mission.mission_level || 0}</p>
                           {mission.expired && activeTab === "expired" ? (

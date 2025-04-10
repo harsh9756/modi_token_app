@@ -16,11 +16,11 @@ const levelConfig = {
   } as Record<number, string>,
 
   bg: {
-    1: "/images/levels/Frog-bg.png",
-    2: "/images/levels/Frog-bg.png",
-    3: "/images/levels/Frog-bg.png",
-    4: "/images/levels/Frog-bg.png",
-    5: "/images/levels/Frog-bg.png",
+    1: "/images/levels/Frog-bg.gif",
+    2: "/images/levels/Frog-bg.gif",
+    3: "/images/levels/Frog-bg.gif",
+    4: "/images/levels/Frog-bg.gif",
+    5: "/images/levels/Frog-bg.gif",
   } as Record<number, string>,
 };
 

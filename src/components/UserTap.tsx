@@ -76,7 +76,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
     return () => clearInterval(interval);
   }, []);
   return (
-    <div {...props}>
+    <div {...props } className="text-black">
       <div className="mt-4 mb-8">
         <button
           ref={userTapButtonRef}
