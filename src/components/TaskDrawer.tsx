@@ -81,11 +81,15 @@ export default function TaskDrawer({
       <Button
         className="w-full mt-12"
         onClick={() => {
+          // Trigger the submit mutation
+          submitMutation.mutate();
+
+          // Open the task link
           if (task.link) {
             if (window.Telegram?.WebApp) {
               Telegram.WebApp.openTelegramLink(task.link);
             } else {
-              // Fallback for localhost
+              // Fallback for non-Telegram environments
               window.open(task.link, "_blank");
             }
           } else {
