@@ -52,15 +52,15 @@ function App() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     useUserStore.setState((state) => ({
-  //       ...state, // Spread the existing state to ensure immutability
-  //       balance: state.balance + state.production_per_hour / 3600,
-  //     }));
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      useUserStore.setState((state) => ({
+        ...state, // Spread the existing state to ensure immutability
+        balance: state.balance + state.production_per_hour / 3600,
+      }));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (!userStore.balance || !userStore.level?.level) return;
