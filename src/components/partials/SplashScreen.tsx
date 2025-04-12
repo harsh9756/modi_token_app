@@ -20,17 +20,11 @@ const socialLinks = [
   },
 ];
 
-const splashScreenImages = [
-  "/images/splash-screen/bg.jpg",
-];
-
 export default function SplashScreen() {
-  const randomImage =
-    splashScreenImages[Math.floor(Math.random() * splashScreenImages.length)];
   return (
     <div
       className="flex flex-col items-center justify-between pt-16 bg-cover bg-center w-full max-w-lg h-[--tg-viewport-height] mx-auto"
-      style={{ backgroundImage: `url('${randomImage}')` }}
+      style={{ backgroundImage: `url('/images/splash-screen/bg.jpg')` }}
     >
       <img src="/images/logo.png" alt="logo" className="h-48 max-w-full" />
       <div className="flex flex-col items-center w-full">

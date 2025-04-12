@@ -26,8 +26,6 @@ export default function Earn() {
     queryFn: () => $http.$get<TaskType[]>("/clicker/tasks"),
   });
 
-  console.log("tasks", data);
-
   const referralTasks = useQuery({
     queryKey: ["referral-tasks"],
     queryFn: () => $http.$get<ReferralTaskType[]>("/clicker/referral-tasks"),

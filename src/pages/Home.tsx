@@ -3,9 +3,16 @@ import { useUserStore } from "../store/user-store";
 import { Link } from "react-router-dom";
 import UserGameDetails from "@/components/UserGameDetails";
 import { useStore } from "@/store";
+import Drawer from "@/components/ui/drawer";
+import { useState } from "react";
 
 export default function Home() {
   const user = useUserStore();
+  const data= useStore();
+  const [open, setOpen] = useState(false);
+  if (data.passive_earning > 0) {
+    // setOpen(true);
+  }
   const { maxLevel } = useStore();
   return (
     <div className="flex-1 px-5 pb-20 bg-slate-300">
@@ -27,7 +34,7 @@ export default function Home() {
             className="object-contain w-10 h-10"
           />
           <span className="text-3xl font-bold text-black">
-            {user.balance.toLocaleString("en-US", { maximumFractionDigits: 3 })}
+            {user.balance.toLocaleString("en-US", { maximumFractionDigits: 6 })}
           </span>
         </div>
       </header>
@@ -57,6 +64,9 @@ export default function Home() {
         </div>
       </div>
       <UserTap />
+      <Drawer open={open} onOpenChange={setOpen}>
+        <div>kuch toh h</div>
+      </Drawer>
     </div>
   );
 }

@@ -29,7 +29,8 @@ export default function Layout() {
     });
   }, []);
   return (
-    <main className="flex flex-col w-full max-w-lg h-[--tg-viewport-height] mx-auto text-white">
+    <main
+      className="flex flex-col w-full max-w-lg h-[--tg-viewport-height] mx-auto text-white">
       <Outlet />
       <AppBar />
       <PopupMessageDialog message={popupMessgae.data} />

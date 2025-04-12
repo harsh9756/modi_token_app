@@ -12,10 +12,12 @@ import { useMemo } from "react";
 export default function MissionDrawer({
   mission,
   setOwnedMissions,
+  ownedMissions,
   ...props
 }: DrawerProps & {
   mission: any | null;
-    setOwnedMissions: any;
+  ownedMissions: any | null;
+  setOwnedMissions: any;
 }) {
   const { balance, setBalance,set_PPH } = useUserStore(); // Update balance state
   const insufficientBalance = useMemo(() => {
@@ -27,15 +29,14 @@ export default function MissionDrawer({
     mutationFn: () => $http.post(`/clicker/mission-levels/${mission?.id}`),
     onSuccess: ({ data }) => {
       toast.success(data.message || "Mission upgraded successfully");
+      console.log("Mission upgraded successfully", data);
       // Update balance after upgrade
-      console.log("post purchase",data)
       setBalance(data.updated_balance);
       set_PPH(data.updated_production)
       setOwnedMissions((prevMissions: any) => {
         const missionExists = prevMissions.some(
           (mission: Mission) => mission.id === data?.new_mission.id
         );
-
         if (missionExists) {
           // If mission exists, increment the level
           return prevMissions.map((mission: Mission) =>
@@ -44,11 +45,9 @@ export default function MissionDrawer({
               : mission
           );
         } else {
-          // If mission doesn't exist, add the new mission
           return [...prevMissions, data?.new_mission];
         }
       });
-
       props.onOpenChange?.(false);
     },
     onError: (error: any) => {

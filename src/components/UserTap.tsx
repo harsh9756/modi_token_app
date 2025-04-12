@@ -71,7 +71,7 @@ export default function UserTap(props: React.HTMLProps<HTMLDivElement>) {
     useClicksStore.setState({ clicks: [] });
     const interval = setInterval(() => {
       incraseEnergy(1);
-    }, 3000);
+    }, 2000);
 
     return () => clearInterval(interval);
   }, []);

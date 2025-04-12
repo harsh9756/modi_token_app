@@ -12,6 +12,7 @@ type StoreStateType = {
   totalDailyRewards: number;
   dailyResetEnergy: DailyBoosterType;
   maxDailyResetEnergy: number;
+  passive_earning: number;
   maxLevel: number;
   levels: Level[];
   levelUp: {
@@ -30,6 +31,7 @@ export const useStore = create<StoreStateType>((set) => ({
     full_energy: { level: 0, cost: 0, increase_by: 0 },
   },
   totalDailyRewards: 0,
+  passive_earning: 0,
   dailyResetEnergy: { uses_today: 0, next_available_at: null },
   maxDailyResetEnergy: 6,
   maxLevel: 18,
