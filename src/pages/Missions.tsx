@@ -78,19 +78,19 @@ export default function Missions() {
         <div className="mt-10">
           <div className="flex justify-evenly bg-black/20 backdrop-blur-sm p-2 rounded-lg">
             <button
-              className={cn("text-sm font-bold uppercase", { "opacity-40": activeTab !== "owned" })}
+              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "owned" })}
               onClick={() => setActiveTab("owned")}
             >
               Owned Missions
             </button>
             <button
-              className={cn("text-sm font-bold uppercase", { "opacity-40": activeTab !== "new" })}
+              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "new" })}
               onClick={() => setActiveTab("new")}
             >
               New Missions
             </button>
             <button
-              className={cn("text-sm font-bold uppercase", { "opacity-40": activeTab !== "expired" })}
+              className={cn("text-xs font-bold uppercase", { "opacity-40": activeTab !== "expired" })}
               onClick={() => setActiveTab("expired")}
             >
               Expired Missions

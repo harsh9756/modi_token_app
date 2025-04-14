@@ -56,11 +56,11 @@ export default function Friends() {
                 <span className="font-bold ">
                   +{referral.base.welcome.toLocaleString()}
                 </span>
-                <span className="text-sm">for you and your friend</span>
+                <span className="text-sm">for you and your friend receives Welcome Bonus</span>
               </div>
             </div>
           </button>
-          <button className="flex items-center w-full gap-4 px-4 py-2 bg-black/15 rounded-xl">
+          <button className="flex items-center text-left w-full gap-4 px-4 py-2 bg-black/15 rounded-xl">
             <img
               src="/images/bounty.png"
               alt="bounty"
@@ -77,7 +77,7 @@ export default function Friends() {
                 <span className="font-bold ">
                   +{referral.premium.welcome.toLocaleString()}
                 </span>
-                <span className="text-sm">for you and your friend</span>
+                <span className="text-sm">for you and your friend receives Welcome Bonus</span>
               </div>
             </div>
           </button>

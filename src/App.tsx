@@ -101,9 +101,9 @@ function App() {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           username: user.username,
-          referred_by: start_param?.replace("ref", ""),
         });
         setBearerToken(data.token);
+        console.log(data);
         setIsFirstLoad(data.first_login);
       }
       const data = await $http.$get<
