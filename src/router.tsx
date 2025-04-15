@@ -6,12 +6,12 @@ import Leaderboard from "./pages/Leaderboard";
 import Earn from "./pages/Earn";
 import Friends from "./pages/Friends";
 import Missions from "./pages/Missions";
+import { Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-
     children: [
       {
         path: "",
@@ -36,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "missions",
         element: <Missions />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
       },
     ],
   },
