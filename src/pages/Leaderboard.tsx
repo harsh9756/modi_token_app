@@ -58,7 +58,7 @@ export default function Leaderboard() {
             {levels?.map((item, i) => (
               <SwiperSlide
                 key={`slide-${i}`}
-                className="relative z-10 bg-black" // Ensure proper stacking context
+                className="relative z-10" // Ensure proper stacking context
               >
                 <div
                   className="py-4 bg-center bg-cover rounded-xl"
@@ -69,7 +69,7 @@ export default function Leaderboard() {
                   <img
                     src={levelConfig.frogs[item.level]}
                     alt="level image"
-                    className="object-contain mx-auto w-60 h-60"
+                    className="object-fill mx-auto w-60 h-60"
                     style={{
                       filter: levelConfig.filter[item.level],
                     }}
@@ -131,7 +131,7 @@ export default function Leaderboard() {
                       alt="coin"
                       className="object-contain w-5 h-5"
                     />
-                    <span>{compactNumber(item.production_per_hour)}</span>
+                    <span>{compactNumber(item.balance)}</span>
                   </div>
                 </div>
               ))
