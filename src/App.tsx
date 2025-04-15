@@ -101,6 +101,7 @@ function App() {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           username: user.username,
+          referred_by: start_param,
         });
         setBearerToken(data.token);
         console.log(data);
