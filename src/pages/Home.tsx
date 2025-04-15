@@ -15,7 +15,6 @@ export default function Home() {
 
   if (data.passive_earning > 0) {
     setOpen(true);
-    console.log(data.passive_earning);
     setPe(`${data.passive_earning.toLocaleString("en-US", { maximumFractionDigits: 6 })}`); // Update state
     data.passive_earning = 0;
   }
@@ -32,7 +31,7 @@ export default function Home() {
             className="object-cover w-8 h-8 rounded-full"
           />
           <p className="text-sm font-medium uppercase text-black">
-            {user?.first_name} {user?.last_name}
+            {user?.first_name}
           </p>
         </div>
         <div className="flex items-center gap-2 pl-2 pr-3 py-2 border-2 rounded-full bg-black/25 border-black/10">
