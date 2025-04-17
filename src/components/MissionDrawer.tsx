@@ -29,7 +29,6 @@ export default function MissionDrawer({
     mutationFn: () => $http.post(`/clicker/mission-levels/${mission?.id}`),
     onSuccess: ({ data }) => {
       toast.success(data.message || "Mission upgraded successfully");
-      console.log("Mission upgraded successfully", data);
       // Update balance after upgrade
       setBalance(data.updated_balance);
       set_PPH(data.updated_production)

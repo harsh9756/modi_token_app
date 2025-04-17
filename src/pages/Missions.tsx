@@ -26,14 +26,12 @@ export default function Missions() {
   // Fetch missions on first load
   useEffect(() => {
     const fetchMissions = async () => {
-      console.log("Fetching missions...");
       try {
         setIsLoading(true);
         const response = await $http.$get<{ all_missions: Mission[]; user_missions: Mission[] }>("/clicker/missions");
         setData(response);
         setOwnedMissions(response.user_missions || []);
       } catch (error) {
-        console.error("Error fetching missions:", error);
       } finally {
         setIsLoading(false);
       }

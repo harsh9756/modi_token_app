@@ -30,7 +30,6 @@ export default function Earn() {
     queryKey: ["referral-tasks"],
     queryFn: () => $http.$get<ReferralTaskType[]>("/clicker/referral-tasks"),
   });
-  console.log(referralTasks.data)
   const videoTasks = useMemo(
     () => data?.filter((task) => task.type === "video") || [],
     [data]

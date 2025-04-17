@@ -67,7 +67,6 @@ function App() {
 
   useEffect(() => {
     if (!user) return () => { };
-    console.log("zzzzzzzzzzzz",user,start_param)
     const signIn = async () => {
       if (localStorage.getItem("token") === null) {
         const { data } = await $http.post<{
@@ -83,7 +82,6 @@ function App() {
           referred_by: start_param,
         });
         setBearerToken(data.token);
-        console.log(data);
         setIsFirstLoad(data.first_login);
       }
       const data = await $http.$get<
