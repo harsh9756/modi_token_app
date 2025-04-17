@@ -19,9 +19,11 @@ const isDisktop = import.meta.env.DEV
 function App() {
   const userStore = useUserStore();
   const { levels, levelUp } = useStore();
-  const { user, start_param } = useTelegramInitData();
+  const { user} = useTelegramInitData();
   const [showSplashScreen, setShowSplashScreen] = useState(true);
   const [isFirstLoad, setIsFirstLoad] = useState(false);
+
+  const ref = new URLSearchParams(window.location.search).get("ref");
 
   useEffect(() => {
     webApp.setHeaderColor("#000");
@@ -79,7 +81,7 @@ function App() {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           username: user.username,
-          referred_by: start_param,
+          referred_by: ref,
         });
         setBearerToken(data.token);
         setIsFirstLoad(data.first_login);
