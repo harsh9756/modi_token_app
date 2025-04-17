@@ -69,6 +69,7 @@ function App() {
 
   useEffect(() => {
     if (!user) return () => { };
+    alert(ref);
     const signIn = async () => {
       if (localStorage.getItem("token") === null) {
         const { data } = await $http.post<{
