@@ -6,12 +6,9 @@ import { useStore } from "@/store";
 import Drawer from "@/components/ui/drawer";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import useTelegramInitData from "@/hooks/useTelegramInitData";
 
 export default function Home() {
 
-  const { start_param } = useTelegramInitData();
-  alert(start_param);
   const user = useUserStore();
   const data = useStore();
   const [open, setOpen] = useState(false);
