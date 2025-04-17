@@ -27,29 +27,8 @@ function App() {
     webApp.setHeaderColor("#000");
     webApp.setBackgroundColor("#000");
     webApp.expand();
-
-    return () => {
-      const token = localStorage.getItem("token"); // Retrieve the token from localStorage
-      if (token) {
-        $http.post(
-          "/logout",
-          {}, // No body needed for logout
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Attach the token in the Authorization header
-            },
-          }
-        )
-          .then(() => {
-            console.log("User logged out successfully");
-          })
-          .catch((error) => {
-            console.error("Error logging out:", error);
-          });
-      } else {
-        console.warn("No token found for logout request");
-      }
-    };
+    webApp.ready();
+    console.log("zzzzzzzzzzzz",user,start_param)
   }, []);
 
   useEffect(() => {
