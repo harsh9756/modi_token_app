@@ -28,7 +28,6 @@ function App() {
     webApp.setBackgroundColor("#000");
     webApp.expand();
     webApp.ready();
-    console.log("zzzzzzzzzzzz",user,start_param)
   }, []);
 
   useEffect(() => {
@@ -68,6 +67,7 @@ function App() {
 
   useEffect(() => {
     if (!user) return () => { };
+    console.log("zzzzzzzzzzzz",user,start_param)
     const signIn = async () => {
       if (localStorage.getItem("token") === null) {
         const { data } = await $http.post<{
