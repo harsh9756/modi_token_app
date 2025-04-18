@@ -38,10 +38,13 @@ export default function Leaderboard() {
     }
   }, [level, levels]);
 
+  console.log("Active Index:", activeIndex);
+  console.log("Levels:", levels);
+  console.log("Data:", leaderboard.data);
+
   if (!levels || levels.length === 0) {
     return <div className="text-white">No levels available</div>;
   }
-
   return (
     <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
