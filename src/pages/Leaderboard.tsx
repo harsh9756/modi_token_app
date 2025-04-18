@@ -136,20 +136,21 @@ export default function Leaderboard() {
               </div>
             ) : Array.isArray(leaderboard.data) && leaderboard.data.length > 0 ? (
               leaderboard.data.map((item, key) => (
-                <div key={key} className="flex items-center py-2 gap-2.5 px-4">
-                  <span className="w-6 text-left text-primary">{key + 1}</span>
-                  <span>
-                    {item.first_name || "Unknown"} {item.last_name || "User"}
-                  </span>
-                  <div className="flex items-center gap-2 ml-auto">
-                    <img
-                      src="/images/coin.png"
-                      alt="coin"
-                      className="object-contain w-5 h-5"
-                    />
-                    <span>{compactNumber(item.balance || 0)}</span>
-                  </div>
-                </div>
+                <p key={key}>{item.first_name}</p>
+                // <div key={key} className="flex items-center py-2 gap-2.5 px-4">
+                //   <span className="w-6 text-left text-primary">{key + 1}</span>
+                //   <span>
+                //     {item.first_name || "Unknown"} {item.last_name || "User"}
+                //   </span>
+                //   <div className="flex items-center gap-2 ml-auto">
+                //     <img
+                //       src="/images/coin.png"
+                //       alt="coin"
+                //       className="object-contain w-5 h-5"
+                //     />
+                //     <span>{compactNumber(item.balance || 0)}</span>
+                //   </div>
+                // </div>
               ))
             ) : (
               <div className="flex items-center justify-center h-full text-white">
