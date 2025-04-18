@@ -28,10 +28,10 @@ export default function Leaderboard() {
     enabled: !!levels?.[activeIndex]?.id,
   });
 
+  console.log("Leaderboard Data:", leaderboard.data);
   useEffect(() => {
     console.log("User Level:", level);
     console.log("Levels:", levels);
-    console.log("Leaderboard Data:", leaderboard.data);
 
     if (level?.level && levels) {
       const index = levels.findIndex((item) => item.level === level.level);
