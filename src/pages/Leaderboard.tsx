@@ -116,23 +116,22 @@ export default function Leaderboard() {
                 <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
               </div>
             ) : leaderboard.data && leaderboard.data.length > 0 ? (
-              <p>data is here</p>
-                // leaderboard.data.map((item, key) => (
-              //   <div key={key} className="flex items-center py-2 gap-2.5 px-4">
-              //     <span className="w-6 text-left text-primary">{key + 1}</span>
-              //     <span>
-              //       {item.first_name} {item.last_name}
-              //     </span>
-              //     <div className="flex items-center gap-2 ml-auto">
-              //       <img
-              //         src="/images/coin.png"
-              //         alt="coin"
-              //         className="object-contain w-5 h-5"
-              //       />
-              //       <span>{compactNumber(item.balance)}</span>
-              //     </div>
-              //   </div>
-              // ))
+              leaderboard.data.map((item, key) => (
+                <div key={key} className="flex items-center py-2 gap-2.5 px-4">
+                  <span className="w-6 text-left text-primary">{key + 1}</span>
+                  <span>
+                    {item.first_name} {item.last_name}
+                  </span>
+                  <div className="flex items-center gap-2 ml-auto">
+                    <img
+                      src="/images/coin.png"
+                      alt="coin"
+                      className="object-contain w-5 h-5"
+                    />
+                    <span>{compactNumber(item.balance)}</span>
+                  </div>
+                </div>
+              ))
             ) : (
               <div className="flex items-center justify-center h-full text-white">
                 No data
