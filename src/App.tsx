@@ -92,7 +92,7 @@ function App() {
           boosters: Record<BoosterTypes, BoosterType>;
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } & Record<string, any>
-      >("/clicker/sync");
+        >("/clicker/sync");
       useUserStore.setState({
         ...data.user,
       });

@@ -38,7 +38,7 @@ export const useStore = create<StoreStateType>((set) => ({
   levels: [],
   levelUp: {
     max_energy: 500,
-    earn_per_tap: 1,
+    earn_per_tap: 0.001,
   },
   totalReferals: 0,
   referral: {
