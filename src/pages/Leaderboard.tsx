@@ -109,7 +109,7 @@ export default function Leaderboard() {
             </div>
           </div>
         )}
-        <div className="relative flex-1 mt-6">
+        <div className="relative flex-1 mt-6 overflow-visible">
           <div className="absolute inset-0 w-full h-full divide-y divide-[#D9D9D9]/10 overflow-y-auto">
             {leaderboard.isLoading ? (
               <div className="flex items-center justify-center h-full">
