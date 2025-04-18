@@ -13,7 +13,7 @@ import { useStore } from "@/store";
 import { Loader2Icon } from "lucide-react";
 
 export default function Leaderboard() {
-  const { balance, level } = useUserStore();
+  const { balance, level} = useUserStore();
   const [activeIndex, setActiveIndex] = useState(0);
   const { levels } = useStore();
   const swiperRef = useRef<SwiperRef | null>(null);
@@ -28,38 +28,19 @@ export default function Leaderboard() {
     enabled: !!levels?.[activeIndex]?.id,
   });
 
-  console.log("Leaderboard Data:", leaderboard.data);
   useEffect(() => {
-    console.log("User Level:", level);
-    console.log("Levels:", levels);
-
     if (level?.level && levels) {
       const index = levels.findIndex((item) => item.level === level.level);
       if (index !== -1) {
         setActiveIndex(index);
-        if (swiperRef.current?.swiper) {
-          swiperRef.current.swiper.slideTo(index);
-        }
+        if (swiperRef.current) swiperRef.current.swiper.slideTo(index);
       }
     }
   }, [level, levels]);
 
-  if (!level) {
-    return <div className="text-white">User level not found</div>;
-  }
-
   if (!levels || levels.length === 0) {
     return <div className="text-white">No levels available</div>;
   }
-
-  if (leaderboard.isError) {
-    return (
-      <div className="flex items-center justify-center h-full text-white">
-        Error loading leaderboard data
-      </div>
-    );
-  }
-
   return (
     <div className="flex flex-col justify-end bg-[url('/images/bg.png')] bg-cover flex-1">
       <div className="flex flex-col flex-1 w-full h-full px-6 py-8 pb-24 mt-12 modal-body">
@@ -134,24 +115,24 @@ export default function Leaderboard() {
               <div className="flex items-center justify-center h-full">
                 <Loader2Icon className="w-12 h-12 animate-spin text-primary" />
               </div>
-            ) : Array.isArray(leaderboard.data) && leaderboard.data.length > 0 ? (
-              leaderboard.data.map((item, key) => (
-                <p key={key}>{item.first_name}</p>
-                // <div key={key} className="flex items-center py-2 gap-2.5 px-4">
-                //   <span className="w-6 text-left text-primary">{key + 1}</span>
-                //   <span>
-                //     {item.first_name || "Unknown"} {item.last_name || "User"}
-                //   </span>
-                //   <div className="flex items-center gap-2 ml-auto">
-                //     <img
-                //       src="/images/coin.png"
-                //       alt="coin"
-                //       className="object-contain w-5 h-5"
-                //     />
-                //     <span>{compactNumber(item.balance || 0)}</span>
-                //   </div>
-                // </div>
-              ))
+            ) : leaderboard.data && leaderboard.data.length > 0 ? (
+              <p>data is here</p>
+                // leaderboard.data.map((item, key) => (
+              //   <div key={key} className="flex items-center py-2 gap-2.5 px-4">
+              //     <span className="w-6 text-left text-primary">{key + 1}</span>
+              //     <span>
+              //       {item.first_name} {item.last_name}
+              //     </span>
+              //     <div className="flex items-center gap-2 ml-auto">
+              //       <img
+              //         src="/images/coin.png"
+              //         alt="coin"
+              //         className="object-contain w-5 h-5"
+              //       />
+              //       <span>{compactNumber(item.balance)}</span>
+              //     </div>
+              //   </div>
+              // ))
             ) : (
               <div className="flex items-center justify-center h-full text-white">
                 No data
@@ -159,6 +140,7 @@ export default function Leaderboard() {
             )}
           </div>
         </div>
+     
       </div>
     </div>
   );
